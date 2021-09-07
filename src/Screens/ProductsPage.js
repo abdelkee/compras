@@ -12,17 +12,18 @@ import { getOrders } from '../Redux/Reducers/cartReducer';
 
 function ProductsPage() {
 
-    const {products, loading, changed, isFormOpen, confirmDialog} = useSelector(state => state.prods);
+    const {products, loading, isFormOpen, confirmDialog} = useSelector(state => state.prods);
     const {isBlur} = useSelector(state => state.general);
-    const {cartChanged} = useSelector(state => state.cart);
+    //const {cartChanged} = useSelector(state => state.cart);
     const dispatch = useDispatch();
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [inputVal, setInputVal] = useState();
-        
+
+
     useEffect(() => {
         dispatch(fetchProducts());
         dispatch(getOrders());
-    }, [changed, cartChanged])
+    }, [dispatch]) // changed cartChanged
     
     
     function handleChange(e) {

@@ -7,7 +7,7 @@ import { getOrders } from '../Redux/Reducers/cartReducer';
 
 function CartPage() {
 
-    const {orders, loading, cartChanged} = useSelector(state => state.cart);
+    const {orders, loading} = useSelector(state => state.cart);
     const dispatch = useDispatch();
 
 
@@ -15,7 +15,7 @@ function CartPage() {
 
         dispatch(getOrders());
 
-    }, [ cartChanged ])
+    }, [ dispatch ]) //cartChanged
 
     return (
         <section className="w-full h-screen py-12 space-y-2 bg-indigo-200" > 

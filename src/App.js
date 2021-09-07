@@ -7,8 +7,6 @@ import CartPage from './Screens/CartPage';
 import Toast from './Components/General/Toast';
 import IconButton from './Components/General/IconButton';
 import { CartIcon, HomeIcon, ListIcon, SettingsIcon } from './icons';
-import NewProductButton from './Components/General/NewProductButton';
-
 
 function App() {
 

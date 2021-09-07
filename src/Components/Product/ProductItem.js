@@ -1,7 +1,7 @@
 import { AddIcon, CancelIcon, DeleteIcon, EditIcon, MinusIcon, MoreIcon } from "../../icons";
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { confirmDialogVisibility, setButtonVisibility, setFormVisibility, setIsNewToFalse, setIsOrderToFalse, setIsOrderToTrue, setProductId, setProductInfo } from "../../Redux/Reducers/productsReducer";
+import { confirmDialogVisibility, setButtonVisibility, setFormVisibility, setIsNewToFalse, setIsOrderToFalse, setIsOrderToTrue, setProductInfo } from "../../Redux/Reducers/productsReducer";
 import { makeBgBlur } from "../../Redux/Reducers/generalReducer";
 
 

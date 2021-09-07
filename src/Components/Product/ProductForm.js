@@ -86,7 +86,7 @@ function ProductForm() {
                                 <img 
                                     className="object-cover w-full h-36 rounded-lg" 
                                     src={!file ? 'https://loadslammer.com/wp-content/uploads/2021/01/photo-placeholder-icon-17.jpg' : file} 
-                                    alt="product image" />
+                                    alt={productName} />
                         </label>
                     </div>
                     <div className="w-full py-2 flex flex-col space-y-2 justify-around items-center">
