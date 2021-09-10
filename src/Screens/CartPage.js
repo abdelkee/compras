@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import CartItem from '../Components/Cart/CartItem';
 import Toast from '../Components/General/Toast';
 import { getOrders } from '../Redux/Reducers/cartReducer';
-
+import SwipeToDelete from 'react-swipe-to-delete-component';
 
 function CartPage() {
 
@@ -18,11 +18,13 @@ function CartPage() {
     }, [ cartChanged ]) 
 
     return (
-        <section className="w-full h-screen py-12 space-y-2 bg-indigo-200" > 
+        <>
             <SummaryCard/>
-           {orders.map(order => <CartItem key={order._id} info={{id: order._id, name: order.productName, price: order.productPrice, quantity: order.productQuantity}}/>)}
-           {loading && <Toast/>} 
-        </section>
+            <section className="pt-24 w-full h-screen space-y-2" > 
+                {orders.map(order => <CartItem key={order._id} info={{id: order._id, name: order.productName, price: order.productPrice, quantity: order.productQuantity, user: order.user}}/>)}
+            </section>
+                {loading && <Toast/>}
+        </>
     )
 }
 
@@ -39,8 +41,8 @@ function SummaryCard() {
     // breakPoints ...
     
     return(
-        <li className="w-11/12 h-14 px-6 mb-6 m-auto font-semibold text-lg rounded-md shadow-xl bg-indigo-500 flex justify-between items-center text-white">
-            <span className="flex justify-center items-center bg-white text-indigo-500 w-8 h-8 rounded-md">{count}</span>
+        <li className="w-full h-16 fixed top-0 left-0 pr-6 pl-10 font-bold text-xl rounded-b-md shadow-xl bg-indigo-600 flex justify-between items-center text-white z-30">
+            <span className="flex justify-center items-center bg-white text-indigo-600 w-9 h-9 rounded-md">{count}</span>
             <span>Total : $ {total}</span>
         </li>
     )

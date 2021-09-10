@@ -1,13 +1,14 @@
 import axios from 'axios';
 
 const api = "https://akys-grocery.herokuapp.com/";
+//const api = "http://localhost:5000/";
 
 
 export const productsApi = {
     getProducts: () => 
-                axios.get(api+'products').then(res => res.data),
+                 axios.get(api+'products/').then(res => res.data),
     createProduct: (body) => 
-                axios.post(api+'products', body).then(res => res.data),
+                axios.post(api+'products/', body).then(res => res.data),
     updateProduct: (id, body) => 
                 axios.put(api+'products/'+id, body).then(res => res.data),
     deleteProduct: (id) => 

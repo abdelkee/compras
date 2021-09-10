@@ -7,6 +7,8 @@ const generalSlice = createSlice({
         isBlur: false,
         isToastVisible: false,
         changePosition: true,
+        isValid: false,
+        signedUser: ''
     },
     reducers: {
         makeBgBlur: (state) => {
@@ -23,10 +25,32 @@ const generalSlice = createSlice({
 
         setChangePosition: (state) => {
             state.changePosition = !state.changePosition;
+        },
+
+        setIsValidToTrue: (state) => {
+            state.isValid = true;
+        },
+
+        setIsValidToFalse: (state) => {
+            state.isValid = false;
+        },
+
+        setSignedUser: (state, action) => {
+            state.signedUser = action.payload;
         }
+
     }
 });
 
 
-export const { makeBgBlur, removeBgBlur, setToastVisibility, setChangePosition } = generalSlice.actions;
+export const { 
+    makeBgBlur, 
+    removeBgBlur, 
+    setToastVisibility, 
+    setChangePosition,
+    setIsValidToTrue,
+    setIsValidToFalse,
+    setSignedUser
+
+} = generalSlice.actions;
 export default generalSlice.reducer;

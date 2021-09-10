@@ -11,7 +11,7 @@ function NewProductButton() {
     return (
         
         <button 
-            className="bg-green-500 p-3 rounded-full shadow-xl text-white"
+            className="bg-white p-3 rounded-full shadow-xl text-green-500"
             disabled={!isButtonVisible && true}
             onClick={()=> {
                 dispatch(setIsNewToTrue());
