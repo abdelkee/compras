@@ -5,19 +5,19 @@ import { createSlice } from '@reduxjs/toolkit';
 const shoppingSlice = createSlice({
     name: 'shopping',
     initialState: {
-        itemsCount: localStorage.getItem('itemsCount')
+        itemsToBuy: [] 
     },
     reducers: {
-        incrementList: (state, action) => {
-            state.itemsCount = action.payload;
+        addItem: (state, action) => {
+            state.itemsToBuy = [...state.itemsToBuy, action.payload];
         },
 
-        decrementList: (state, action) => {
-            state.itemsCount = action.payload;
+        removeItem: (state, action) => {
+            state.itemsToBuy = action.payload;
         }
     }
 })
 
 
-export const { incrementList, decrementList } = shoppingSlice.actions;
+export const { addItem, removeItem } = shoppingSlice.actions;
 export default shoppingSlice.reducer;

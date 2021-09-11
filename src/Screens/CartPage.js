@@ -40,7 +40,7 @@ function SummaryCard() {
     // pseudo ...
     // breakPoints ...
     
-    return(
+    return (
         <li className="w-full h-16 fixed top-0 left-0 pr-6 pl-10 font-bold text-xl rounded-b-md shadow-xl bg-indigo-600 flex justify-between items-center text-white z-30">
             <span className="flex justify-center items-center bg-white text-indigo-600 w-9 h-9 rounded-md">{count}</span>
             <span>Total : $ {total}</span>

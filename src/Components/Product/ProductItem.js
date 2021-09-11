@@ -19,7 +19,7 @@ function ProductItem({info}) {
             </div>
 
             <div className="w-full py-2 flex flex-col justify-around items-center">
-                <span className="font-medium text-lg">{info.name}</span>    
+                <span className="font-medium text-md">{info.name}</span>    
                 <span>$ {info.price}</span>    
             </div>
 
