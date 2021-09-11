@@ -26,3 +26,9 @@ export const ordersApi = {
     deleteOrder: (id) => 
                 axios.delete(api+'orders/'+id).then(res => res.data),
 };
+
+export const usersApi = {
+    login: (userData) => 
+        axios.post(api+'users/signin', userData).then(res => res.data)
+
+}

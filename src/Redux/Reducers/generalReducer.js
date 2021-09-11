@@ -1,4 +1,15 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { usersApi } from '../api';
+
+export const loginUser = createAsyncThunk(
+    'general/loginUser',
+    async(userData) => {
+        const response = usersApi.login(userData);
+        return response;
+    }
+)
+
+
 
 
 const generalSlice = createSlice({
@@ -7,6 +18,7 @@ const generalSlice = createSlice({
         isBlur: false,
         isToastVisible: false,
         changePosition: true,
+        loading: false,
         isValid: false,
         signedUser: ''
     },
@@ -39,6 +51,20 @@ const generalSlice = createSlice({
             state.signedUser = action.payload;
         }
 
+    },
+    extraReducers: {
+        [loginUser.pending]: (state) => {
+            state.loading = true;
+        },
+
+        [loginUser.fulfilled]: (state, action) => {
+            console.log(action.payload);
+            if(action.payload) {
+                state.isValid = true;
+                state.signedUser = action.payload.userName;
+                state.loading = false;
+            }
+        }
     }
 });
 
