@@ -2,18 +2,21 @@ import { createSlice } from '@reduxjs/toolkit';
 
 
 
+const state = localStorage.getItem('listItems');
+
 const shoppingSlice = createSlice({
     name: 'shopping',
     initialState: {
-        itemsToBuy: [] 
+        itemsToBuy: state === null ? [] : JSON.parse(state)
     },
     reducers: {
         addItem: (state, action) => {
             state.itemsToBuy = [...state.itemsToBuy, action.payload];
+            localStorage.setItem('listItems', JSON.stringify(state.itemsToBuy));
         },
 
         removeItem: (state, action) => {
-            state.itemsToBuy = action.payload;
+            //state.itemsToBuy = ;
         }
     }
 })
