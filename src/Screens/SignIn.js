@@ -15,7 +15,7 @@ function SignIn() {
 
     function signIn() {
         if(!userData.email || !userData.password) return alert('Please fill in all the fields')
-        axios.post("http://localhost:5000/users/signin", userData)
+        axios.post("https://akys-grocery.herokuapp.com/users/signin", userData)
         .then(res => localStorage.setItem('token', res.data.userToken));
         history.push('/');
     }
