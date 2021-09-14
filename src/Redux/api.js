@@ -4,9 +4,11 @@ const api = "https://akys-grocery.herokuapp.com/";
 //const api = "http://localhost:5000/";
 
 
+const token = localStorage.getItem('token');
+
 export const productsApi = {
     getProducts: () => 
-                 axios.get(api+'products/').then(res => res.data),
+                 axios.get(api+'products/', {headers: {Authorization: token}}).then(res => res.data),
     createProduct: (body) => 
                 axios.post(api+'products/', body).then(res => res.data),
     updateProduct: (id, body) => 
@@ -26,9 +28,3 @@ export const ordersApi = {
     deleteOrder: (id) => 
                 axios.delete(api+'orders/'+id).then(res => res.data),
 };
-
-export const usersApi = {
-    login: (userData) => 
-        axios.post(api+'users/signin', userData).then(res => res.data)
-
-}

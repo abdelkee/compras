@@ -1,13 +1,5 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { usersApi } from '../api';
+import { createSlice } from '@reduxjs/toolkit';
 
-export const loginUser = createAsyncThunk(
-    'general/loginUser',
-    async(userData) => {
-        const response = usersApi.login(userData);
-        return response;
-    }
-)
 
 
 
@@ -18,8 +10,6 @@ const generalSlice = createSlice({
         isToastVisible: false,
         changePosition: true,
         loading: false,
-        isValid: false,
-        signedUser: ''
     },
     reducers: {
         makeBgBlur: (state) => {
@@ -38,32 +28,8 @@ const generalSlice = createSlice({
             state.changePosition = !state.changePosition;
         },
 
-        setIsValidToTrue: (state) => {
-            state.isValid = true;
-        },
-
-        setIsValidToFalse: (state) => {
-            state.isValid = false;
-        },
-
-        setSignedUser: (state, action) => {
-            state.signedUser = action.payload;
-        }
-
     },
     extraReducers: {
-        [loginUser.pending]: (state) => {
-            state.loading = true;
-        },
-
-        [loginUser.fulfilled]: (state, action) => {
-            console.log(action.payload);
-            if(action.payload) {
-                state.isValid = true;
-                state.signedUser = action.payload.userName;
-                state.loading = false;
-            }
-        }
     }
 });
 
@@ -72,10 +38,7 @@ export const {
     makeBgBlur, 
     removeBgBlur, 
     setToastVisibility, 
-    setChangePosition,
-    setIsValidToTrue,
-    setIsValidToFalse,
-    setSignedUser
+    setChangePosition
 
 } = generalSlice.actions;
 export default generalSlice.reducer;

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 function IconButton({path, icon}) {
 
     return (
-        <li className= "bg-green-500 p-3 rounded-full relative" >
+        <li className= "relative" >
             <Link to={path}>{icon}</Link>
         </li>
     )

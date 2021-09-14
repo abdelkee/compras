@@ -4,50 +4,50 @@ import ProductsPage from './Screens/ProductsPage';
 import ShoppingPage from './Screens/ShoppingPage';
 import SettingsPage from './Screens/SettingsPage';
 import CartPage from './Screens/CartPage';
-import IconButton from './Components/General/IconButton';
-import { CartIcon, HomeIcon, ListIcon, SettingsIcon } from './icons';
 import SignIn from './Screens/SignIn';
 import SignUp from './Screens/SignUp';
+import BottomBar from './Components/General/BottomBar';
+import { useEffect } from 'react';
+import { fetchProducts } from './Redux/Reducers/productsReducer';
+import { useDispatch } from 'react-redux';
+import SearchPage from './Screens/SearchPage';
 
 function App() {
 
-  const {isValid} = useSelector(state => state.general);
-  
-
+  const token = localStorage.getItem('token');
+ 
   return (
     <>
-      {!isValid ? <div className="w-full h-screen relative sm:hidden">
-        <SignIn/>
-      </div>
-      : <BrowserRouter>
-        <div className="w-full h-screen relative sm:hidden">
+      <BrowserRouter>
+          <div className="w-full h-screen relative sm:hidden">
+            
+            <Switch>
+              <Route exact path="/">
+                <ProductsPage/>
+              </Route>
 
-          <ul className="bg-blue-100 border-t border-blue-200 flex justify-evenly items-center z-30 w-full h-16 text-white fixed left-0 bottom-0" >
-            <IconButton path={"/"} icon={<HomeIcon/>} />
-            <IconButton path={"/cart"} icon={<CartIcon/>} />
-            <IconButton path={"/shopping"} icon={<ListIcon/>} />
-            <IconButton path={"/settings"} icon={<SettingsIcon/>} />
-          </ul>
+              <Route exact path="/cart">
+                <CartPage/>
+              </Route>
 
-          <Switch>
-            <Route exact path="/">
-              <ProductsPage/>
-            </Route>
+              <Route exact path="/search">
+                <SearchPage/>
+              </Route>
 
-            <Route exact path="/cart">
-              <CartPage/>
-            </Route>
+              <Route exact path="/shopping">
+                <ShoppingPage/>
+              </Route>
 
-            <Route exact path="/shopping">
-              <ShoppingPage/>
-            </Route>
+              <Route exact path="/settings">
+                <SettingsPage/>
+              </Route>
 
-            <Route exact path="/settings">
-              <SettingsPage/>
-            </Route>
-          </Switch>
-        </div>
-      </BrowserRouter>}
+              <Route exact path="/signin">
+                <SignIn/>
+              </Route>
+            </Switch>
+          </div>
+      </BrowserRouter>
     </>
   );
 }

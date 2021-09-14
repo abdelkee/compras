@@ -1,4 +1,4 @@
-import { NewProdIcon } from '../../icons';
+import { AddIcon, NewProdIcon } from '../../icons';
 import { setFormVisibility, setButtonVisibility, setIsNewToTrue } from '../../Redux/Reducers/productsReducer';
 import { makeBgBlur } from '../../Redux/Reducers/generalReducer';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,7 +11,7 @@ function NewProductButton() {
     return (
         
         <button 
-            className="bg-white p-3 rounded-full text-green-700"
+            className="text-white"
             disabled={!isButtonVisible && true}
             onClick={()=> {
                 dispatch(setIsNewToTrue());
@@ -20,7 +20,7 @@ function NewProductButton() {
                 dispatch(setButtonVisibility());
                 document.body.style.overflow='hidden';
             }}
-        ><NewProdIcon/></button>
+        ><AddIcon/></button>
         
     )
 }

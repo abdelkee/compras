@@ -10,11 +10,11 @@ function ShoppingItem({info}) {
     const [checked, setChecked] = useState(state === null ? false : JSON.parse(state));
     localStorage.setItem(info.id, checked);
     
-    const {signedUser} = useSelector(state => state.general);
+    const {user} = useSelector(state => state.prods);
 
     const handleCheck = () => {
         if(checked) {
-            if(signedUser === 'abdelkee') {
+            if(user === 'abdelkee') {
                 return 'bg-indigo-500';
             }else return 'bg-pink-500';           
         } else return 'bg-gray-300'

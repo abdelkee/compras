@@ -5,6 +5,8 @@ import { AddIcon, DoneIcon } from "../icons";
 import {v4} from 'uuid';
 import { addItem } from "../Redux/Reducers/shoppingReducer";
 import { useDispatch } from "react-redux";
+import BottomBar from "../Components/General/BottomBar";
+import { Redirect } from "react-router";
 
 
 function ShoppingPage() {
@@ -15,6 +17,12 @@ function ShoppingPage() {
 
     const [itemData, setItemData] = useState({id: '', itemName: '', itemCategory: ''});
     const dispatch = useDispatch();
+
+    const token = localStorage.getItem('token');
+
+    if(!token) {
+        return <Redirect to="/signin"/>
+    }
 
     const submit = () => {
         if(!itemData.itemName || !itemData.itemCategory) return alert('Fill in all fields');
@@ -28,10 +36,10 @@ function ShoppingPage() {
     }
 
     return (
-        <>
+        <div className="w-full h-screen relative sm:hidden">
             <section className="w-full h-16 fixed top-0 left-0 pr-6 pl-10 rounded-b-md shadow-xl bg-pink-600 flex justify-between items-center z-30">
-                <button onClick={()=>setShow(!show)} className={`text-white transform transition-transform duration-300 ease-out ${show && 'rotate-45'}`}><AddIcon/></button>
               
+                <button onClick={()=>setShow(!show)} className={`text-white transform transition-transform duration-300 ease-out ${show && 'rotate-45'}`}><AddIcon/></button>
                 {show && <div className="flex flex-col justify-between items-center w-full h-32 p-3 px-5 mt-32 ml-4 bg-white shadow-xl rounded-b-xl rounded-t-sm">
                     <input 
                         className="rounded-md bg-pink-50 px-4 py-1 w-full border border-pink-300 focus:outline-none focus:border-pink-400"
@@ -78,7 +86,9 @@ function ShoppingPage() {
                  {itemsToBuy && itemsToBuy.map(item => <ShoppingItem key={item.id} info={{id: item.id, itemName: item.itemName, itemCategory: item.itemCategory}}/>)}
 
             </section> 
-        </>
+            <BottomBar/>
+
+        </div>
     )
 }
 

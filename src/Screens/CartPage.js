@@ -4,27 +4,33 @@ import CartItem from '../Components/Cart/CartItem';
 import Toast from '../Components/General/Toast';
 import { getOrders } from '../Redux/Reducers/cartReducer';
 import SwipeToDelete from 'react-swipe-to-delete-component';
+import BottomBar from '../Components/General/BottomBar';
+import { Redirect } from 'react-router';
 
 function CartPage() {
 
     const {orders, loading, cartChanged} = useSelector(state => state.cart);
     const dispatch = useDispatch();
-
+    const token = localStorage.getItem('token');
 
     useEffect(()=>{
-
         dispatch(getOrders());
-
     }, [ cartChanged ]) 
 
+    if(!token) {
+        return <Redirect to="/signin"/>
+    }
+
     return (
-        <>
+        <div className="w-full h-screen relative sm:hidden">
             <SummaryCard/>
-            <section className="pt-24 w-full h-screen space-y-2" > 
+            <div className="pt-24 w-full pb-20 space-y-2" > 
                 {orders.map(order => <CartItem key={order._id} info={{id: order._id, name: order.productName, price: order.productPrice, quantity: order.productQuantity, user: order.user}}/>)}
-            </section>
+            </div>
                 {loading && <Toast/>}
-        </>
+            <BottomBar/>
+
+        </div>
     )
 }
 

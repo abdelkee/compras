@@ -41,6 +41,8 @@ const productsSlice = createSlice({
         products: [],
         loading: false,
         changed: true,
+        isValid: false,
+        user: '',
         isFormOpen: false,
         isButtonVisible: true,
 
@@ -101,8 +103,11 @@ const productsSlice = createSlice({
         },
 
         [fetchProducts.fulfilled]: (state, action) => {
-            state.products = action.payload;
-            state.loading = false;
+            if(action.payload) {
+                state.products = action.payload.products;
+                state.user = action.payload.user;
+                state.loading = false;  
+            }
         },
 
         [postProduct.fulfilled]: (state) => {

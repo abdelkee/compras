@@ -7,8 +7,7 @@ import { confirmDialogVisibility, deleteProduct, setButtonVisibility } from '../
 
 
 function ProductConfirmDialog() {
-    const {isOrder, productInfo} = useSelector(state => state.prods);
-    const {signedUser} = useSelector(state => state.general);
+    const {isOrder, productInfo, user} = useSelector(state => state.prods);
     const [price, setPrice] = useState(productInfo.price);
     const dispatch = useDispatch();
 
@@ -21,7 +20,7 @@ function ProductConfirmDialog() {
           productPrice: price,
           productQuantity: productInfo.quantity,
           purchaseDate: new Date().toUTCString(),
-          user: signedUser
+          user: user
         }
 
       if(isOrder) dispatch(postOrder(body));

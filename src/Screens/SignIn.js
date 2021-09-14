@@ -1,19 +1,23 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { loginUser } from '../Redux/Reducers/generalReducer';
+import { useSelector, useDispatch } from "react-redux";
 import Toast from '../Components/General/Toast';
+import { setUser } from '../Redux/Reducers/generalReducer';
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 
 function SignIn() {
 
+    let history = useHistory();
     const [userData, setUserData] = useState({email:'', password:''});
     const {loading} = useSelector(state => state.general);
     const dispatch = useDispatch();
 
     function signIn() {
         if(!userData.email || !userData.password) return alert('Please fill in all the fields')
-        dispatch(loginUser(userData));
+        axios.post("http://localhost:5000/users/signin", userData)
+        .then(res => localStorage.setItem('token', res.data.userToken));
+        history.push('/');
     }
 
     return (
