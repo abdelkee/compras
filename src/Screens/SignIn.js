@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Toast from '../Components/General/Toast';
-import { setUser } from '../Redux/Reducers/generalReducer';
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
@@ -11,7 +10,6 @@ function SignIn() {
     let history = useHistory();
     const [userData, setUserData] = useState({email:'', password:''});
     const {loading} = useSelector(state => state.general);
-    const dispatch = useDispatch();
 
     function signIn() {
         if(!userData.email || !userData.password) return alert('Please fill in all the fields')

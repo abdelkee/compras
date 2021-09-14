@@ -8,7 +8,7 @@ const token = localStorage.getItem('token');
 
 export const productsApi = {
     getProducts: () => 
-                 axios.get(api+'products/', {headers: {Authorization: token}}).then(res => res.data),
+                 axios.get(api+'products/', {headers: {Authorization: token, }}).then(res => res.data),
     createProduct: (body) => 
                 axios.post(api+'products/', body).then(res => res.data),
     updateProduct: (id, body) => 
