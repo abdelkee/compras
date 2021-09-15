@@ -2,6 +2,13 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { productsApi } from '../api';
 
 
+export const fetchProducts = createAsyncThunk(
+    'products/fetchProducts',
+    async () => {
+        const response = productsApi.getProducts();
+        return response;
+    }
+)
 
 export const postProduct = createAsyncThunk(
     'products/postProduct',
@@ -30,8 +37,11 @@ export const deleteProduct = createAsyncThunk(
 const productsSlice = createSlice({
     name: 'products',
     initialState: {
+        products: [],
         changed: true,
+        loading: false,
         isValid: false,
+        user: '',
         isFormOpen: false,
         isButtonVisible: true,
 
@@ -43,7 +53,7 @@ const productsSlice = createSlice({
 
         confirmDialog: false,
         isOrder: true,
-        productInfo: {}, // productInfo = { productId ,name ,price ,quantity, user}
+        productInfo: {}, // productInfo = { productId ,name ,price ,quantity}
 
 
     },
@@ -73,7 +83,7 @@ const productsSlice = createSlice({
 
         confirmDialogVisibility: (state, action) => {
             state.confirmDialog = !state.confirmDialog;
-            state.productInfo = action.payload; // payload = { productId ,name ,price ,quantity, user}
+            state.productInfo = action.payload; // payload = { productId ,name ,price ,quantity}
         },
 
         setIsOrderToFalse: (state) => {
@@ -86,6 +96,16 @@ const productsSlice = createSlice({
 
     },
     extraReducers: {
+
+        [fetchProducts.pending]: (state) => {
+            state.loading = true;
+        },
+
+        [fetchProducts.fulfilled]: (state, action) => {
+            state.products = action.payload.products;
+            state.user = action.payload.user;
+            state.loading = false;
+        },
 
         [postProduct.fulfilled]: (state) => {
             state.changed = !state.changed;

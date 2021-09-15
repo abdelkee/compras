@@ -1,35 +1,40 @@
-import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import ProductItem from '../Components/Product/ProductItem';
 import ProductConfirmDialog from '../Components/Product/ProductConfirmDialog';
 import ProductForm from '../Components/Product/ProductForm';
 import BlurBg from '../Components/General/BlurBg';
 import NewProductButton from '../Components/General/NewProductButton';
 import BottomBar from '../Components/General/BottomBar';
-import axios from 'axios';
+import { fetchProducts } from '../Redux/Reducers/productsReducer';
+import Toast from '../Components/General/Toast';
+// import axios from 'axios';
 
 
 
 function ProductsPage() {
 
-    const [products, setProducts] = useState([]);
-    const [user, setUser] = useState('');
+    // const [products, setProducts] = useState([]);
+    // const [user, setUser] = useState('');
 
-    const {isFormOpen, confirmDialog, changed} = useSelector(state => state.prods);
+    const {products, user, loading, isFormOpen, confirmDialog, changed} = useSelector(state => state.prods);
     const {isBlur} = useSelector(state => state.general);
-    
-    const api = 'https://akys-grocery.herokuapp.com/';
+    const dispatch = useDispatch();
+
+
+    // const api = 'https://akys-grocery.herokuapp.com/';
     // const api = 'http://localhost:5000/';
-    const token = localStorage.getItem('token');
+    // const token = localStorage.getItem('token');
 
-
+    
     
     useEffect(()=>{
-        axios.get(api+'products', {headers: {Authorization: token}}).then(res => {
-            setProducts(res.data.products);
-            setUser(res.data.user);
-        });
-    }, [products, token, changed])
+        dispatch(fetchProducts());
+        // axios.get(api+'products', {headers: {Authorization: token}}).then(res => {
+        //     setProducts(res.data.products);
+        //     setUser(res.data.user);
+        // });
+    }, [changed, dispatch])
 
     return (
         <div className="w-full h-screen relative sm:hidden">
@@ -43,8 +48,9 @@ function ProductsPage() {
             <section className="px-5 pt-24 relative w-full h-screen">
                 
                 <div className="z-30 pb-20 grid grid-cols-2 gap-6">
-                    {products && products.map(prod => <ProductItem key={prod._id} info={{id: prod._id, name: prod.name, price: prod.price, image: prod.image}} activeUser={user}/>)}
+                    {products && products.map(prod => <ProductItem key={prod._id} info={{id: prod._id, name: prod.name, price: prod.price, image: prod.image}}/>)}
                 </div>
+                {loading && <Toast/>}
                 {isFormOpen && <ProductForm/>}
                 {confirmDialog && <ProductConfirmDialog/>}
                 {isBlur && <BlurBg/>}

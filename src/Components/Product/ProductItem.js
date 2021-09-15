@@ -56,7 +56,7 @@ function MakeOrderButton({switchTurn}) {
     )
 }
 
-function AddQuantity({info, user}) {
+function AddQuantity({info}) {
 
     const [quantity, setQuantity] = useState(1);
     const dispatch = useDispatch();
@@ -78,7 +78,6 @@ function AddQuantity({info, user}) {
                         name: info.name,
                         price: info.price * quantity,
                         quantity: quantity,
-                        user: user
                     }
 
                     dispatch(confirmDialogVisibility(productInfo));
