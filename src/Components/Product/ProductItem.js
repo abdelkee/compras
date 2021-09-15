@@ -5,7 +5,7 @@ import { confirmDialogVisibility, setButtonVisibility, setFormVisibility, setIsN
 import { makeBgBlur } from "../../Redux/Reducers/generalReducer";
 
 
-function ProductItem({info}) {
+function ProductItem({info, activeUser}) {
 
     const [visible, setVisible] = useState(false);
     const [isAdded, setIsAdded] = useState(false);
@@ -34,7 +34,7 @@ function ProductItem({info}) {
                 </button>
                 
                 {!isAdded && <MakeOrderButton switchTurn={()=>setIsAdded(!isAdded)}/>}
-                {isAdded && <AddQuantity info={info}/>}
+                {isAdded && <AddQuantity info={info} user={activeUser}/>}
             </div>
 
             {visible && <EditButton info={info}/>}
@@ -56,7 +56,7 @@ function MakeOrderButton({switchTurn}) {
     )
 }
 
-function AddQuantity({info}) {
+function AddQuantity({info, user}) {
 
     const [quantity, setQuantity] = useState(1);
     const dispatch = useDispatch();
@@ -77,7 +77,8 @@ function AddQuantity({info}) {
                         productId: info.id,
                         name: info.name,
                         price: info.price * quantity,
-                        quantity: quantity
+                        quantity: quantity,
+                        user: user
                     }
 
                     dispatch(confirmDialogVisibility(productInfo));

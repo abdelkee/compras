@@ -43,7 +43,7 @@ const productsSlice = createSlice({
 
         confirmDialog: false,
         isOrder: true,
-        productInfo: {}, // productInfo = { productId ,name ,price ,quantity}
+        productInfo: {}, // productInfo = { productId ,name ,price ,quantity, user}
 
 
     },
@@ -73,7 +73,7 @@ const productsSlice = createSlice({
 
         confirmDialogVisibility: (state, action) => {
             state.confirmDialog = !state.confirmDialog;
-            state.productInfo = action.payload; // payload = { productId ,name ,price ,quantity}
+            state.productInfo = action.payload; // payload = { productId ,name ,price ,quantity, user}
         },
 
         setIsOrderToFalse: (state) => {

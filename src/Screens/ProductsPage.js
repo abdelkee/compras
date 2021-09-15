@@ -43,7 +43,7 @@ function ProductsPage() {
             <section className="px-5 pt-24 relative w-full h-screen">
                 
                 <div className="z-30 pb-20 grid grid-cols-2 gap-6">
-                    {products && products.map(prod => <ProductItem key={prod._id} info={{id: prod._id, name: prod.name, price: prod.price, image: prod.image}}/>)}
+                    {products && products.map(prod => <ProductItem key={prod._id} info={{id: prod._id, name: prod.name, price: prod.price, image: prod.image}} activeUser={user}/>)}
                 </div>
                 {isFormOpen && <ProductForm/>}
                 {confirmDialog && <ProductConfirmDialog/>}
