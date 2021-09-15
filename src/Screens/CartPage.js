@@ -4,21 +4,18 @@ import CartItem from '../Components/Cart/CartItem';
 import Toast from '../Components/General/Toast';
 import { getOrders } from '../Redux/Reducers/cartReducer';
 import BottomBar from '../Components/General/BottomBar';
-import { Redirect } from 'react-router';
+// import { Redirect } from 'react-router';
 
 function CartPage() {
 
     const {orders, loading, cartChanged} = useSelector(state => state.cart);
     const dispatch = useDispatch();
-    const token = localStorage.getItem('token');
 
+    
     useEffect(()=>{
         dispatch(getOrders());
     }, [ cartChanged, dispatch ]) 
 
-    if(!token) {
-        return <Redirect to="/signin"/>
-    }
 
     return (
         <div className="w-full h-screen relative sm:hidden">

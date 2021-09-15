@@ -3,14 +3,6 @@ import { productsApi } from '../api';
 
 
 
-export const fetchProducts = createAsyncThunk(
-    'products/fetchProducts',
-    async() => {
-        const response = productsApi.getProducts();
-        return response;
-    }
-)
-
 export const postProduct = createAsyncThunk(
     'products/postProduct',
     async (body) => {
@@ -38,11 +30,8 @@ export const deleteProduct = createAsyncThunk(
 const productsSlice = createSlice({
     name: 'products',
     initialState: {
-        products: [],
-        loading: false,
         changed: true,
         isValid: false,
-        user: '',
         isFormOpen: false,
         isButtonVisible: true,
 
@@ -97,18 +86,6 @@ const productsSlice = createSlice({
 
     },
     extraReducers: {
-       
-        [fetchProducts.pending]: (state) => {
-            state.loading = true;
-        },
-
-        [fetchProducts.fulfilled]: (state, action) => {
-            if(action.payload) {
-                state.products = action.payload.products;
-                state.user = action.payload.user;
-                state.loading = false;  
-            }
-        },
 
         [postProduct.fulfilled]: (state) => {
             state.changed = !state.changed;

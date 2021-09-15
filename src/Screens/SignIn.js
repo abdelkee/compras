@@ -11,10 +11,11 @@ function SignIn() {
     const [userData, setUserData] = useState({email:'', password:''});
     const {loading} = useSelector(state => state.general);
 
-    function signIn() {
-        if(!userData.email || !userData.password) return alert('Please fill in all the fields')
-        axios.post("https://akys-grocery.herokuapp.com/users/signin", userData)
-        .then(res => localStorage.setItem('token', res.data.userToken));
+    async function signIn() {
+        //akys-grocery.herokuapp.com
+        if(!userData.email || !userData.password) return alert('Please fill in all the fields');
+        const response = await axios.post("https://akys-grocery.herokuapp.com/users/signin", userData);
+        localStorage.setItem('token', response.data.userToken);
         history.push('/');
     }
 
