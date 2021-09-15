@@ -10,7 +10,12 @@ function SignIn() {
     let history = useHistory();
     const [userData, setUserData] = useState({email:'', password:''});
     const {loading} = useSelector(state => state.general);
+    const token = localStorage.getItem('token');
 
+    if(token) {
+        return history.push('/');
+    }
+    
     async function signIn() {
         //akys-grocery.herokuapp.com
         if(!userData.email || !userData.password) return alert('Please fill in all the fields');

@@ -15,7 +15,7 @@ function ProductsPage() {
     const [products, setProducts] = useState([]);
     const [user, setUser] = useState('');
 
-    const {isFormOpen, confirmDialog} = useSelector(state => state.prods);
+    const {isFormOpen, confirmDialog, changed} = useSelector(state => state.prods);
     const {isBlur} = useSelector(state => state.general);
     
     const api = 'https://akys-grocery.herokuapp.com/';
@@ -29,7 +29,7 @@ function ProductsPage() {
             setProducts(res.data.products);
             setUser(res.data.user);
         });
-    }, [token])
+    }, [products, token, changed])
 
     return (
         <div className="w-full h-screen relative sm:hidden">
