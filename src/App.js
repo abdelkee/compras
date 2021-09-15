@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import ProductsPage from './Screens/ProductsPage';
 import ShoppingPage from './Screens/ShoppingPage';
 import SettingsPage from './Screens/SettingsPage';
@@ -10,7 +10,7 @@ import SearchPage from './Screens/SearchPage';
 
 function App() {
  
-  // const token = localStorage.getItem('token');
+  const token = localStorage.getItem('token');
 
 
   return (
@@ -20,7 +20,8 @@ function App() {
             
             <Switch>
               <Route exact path="/">
-                <ProductsPage/>
+                {/* <ProductsPage/> */}
+                {token ? <ProductsPage/> : <Redirect to="signin"/>}
               </Route>
 
               <Route exact path="/cart">
