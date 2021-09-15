@@ -20,13 +20,13 @@ function ProductsPage() {
     
     const api = 'https://akys-grocery.herokuapp.com/';
     // const api = 'http://localhost:5000/';
-    const token = localStorage.getItem('token');
+    // const token = localStorage.getItem('token');
 
     const fetchProducts = useCallback(async () => {
-        const response = await axios.get(api+'products', {headers: {Authorization: token}});
+        const response = await axios.get(api+'products');
         setProducts(response.data.products);
         setUser(response.data.user);
-    },[token])
+    },[])
     
     useEffect(()=>{
         fetchProducts();
@@ -36,7 +36,7 @@ function ProductsPage() {
         <div className="w-full h-screen relative sm:hidden">
 
             <div className="w-full px-8 shadow-lg font-bold bg-green-500 flex justify-between items-center h-16 text-white text-lg fixed top-0 left-0 z-30">
-                {user ? <UserName name={user === 'abdelkee' ? "Abdel" : "Belkys"} color={user === 'abdelkee' ? "bg-indigo-200" : "bg-pink-200"}/> : "Loading data..."}       
+                {user ? <UserName name={user === 'abdelkee' ? "Abdel" : "Belkys"} color={user === 'abdelkee' ? "bg-indigo-200" : "bg-pink-200"}/> : "no user"}       
                 
                 <NewProductButton/>
             </div>
