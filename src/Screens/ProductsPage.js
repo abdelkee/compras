@@ -8,7 +8,7 @@ import Toast from '../Components/General/Toast';
 import BlurBg from '../Components/General/BlurBg';
 import { getOrders } from '../Redux/Reducers/cartReducer';
 import NewProductButton from '../Components/General/NewProductButton';
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 import BottomBar from '../Components/General/BottomBar';
 
 
