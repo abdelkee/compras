@@ -7,7 +7,6 @@ import SignIn from './Screens/SignIn';
 import SearchPage from './Screens/SearchPage';
 
 function App() {
-
  
   return (
     <>

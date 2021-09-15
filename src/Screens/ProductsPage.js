@@ -21,7 +21,7 @@ function ProductsPage() {
     //const {cartChanged} = useSelector(state => state.cart);
     const dispatch = useDispatch();
 
-    const token = localStorage.getItem('token');
+    // const token = localStorage.getItem('token');
     
     const fetchOrders = useCallback(() => {
         dispatch(getOrders());
@@ -40,9 +40,9 @@ function ProductsPage() {
         fetchOrders();
     }, [fetchOrders])
 
-    if(!token) {
-        return <Redirect to="/signin"/>
-    }
+    // if(!token) {
+    //     return <Redirect to="/signin"/>
+    // }
     
     return (
         <div className="w-full h-screen relative sm:hidden">
