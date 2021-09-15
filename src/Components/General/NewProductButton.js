@@ -1,4 +1,4 @@
-import { AddIcon, NewProdIcon } from '../../icons';
+import { AddIcon } from '../../icons';
 import { setFormVisibility, setButtonVisibility, setIsNewToTrue } from '../../Redux/Reducers/productsReducer';
 import { makeBgBlur } from '../../Redux/Reducers/generalReducer';
 import { useDispatch, useSelector } from 'react-redux';

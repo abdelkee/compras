@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchProducts } from '../Redux/Reducers/productsReducer';
 import ProductItem from '../Components/Product/ProductItem';
@@ -8,7 +8,6 @@ import Toast from '../Components/General/Toast';
 import BlurBg from '../Components/General/BlurBg';
 import { getOrders } from '../Redux/Reducers/cartReducer';
 import NewProductButton from '../Components/General/NewProductButton';
-import SignIn from './SignIn';
 import { Redirect } from 'react-router-dom';
 import BottomBar from '../Components/General/BottomBar';
 
@@ -17,17 +16,29 @@ import BottomBar from '../Components/General/BottomBar';
 
 function ProductsPage() {
     
-    const {products, user, loading, changed, isFormOpen, confirmDialog} = useSelector(state => state.prods);
+    const {products, user, loading, isFormOpen, confirmDialog} = useSelector(state => state.prods);
     const {isBlur} = useSelector(state => state.general);
-    const {cartChanged} = useSelector(state => state.cart);
+    //const {cartChanged} = useSelector(state => state.cart);
     const dispatch = useDispatch();
 
     const token = localStorage.getItem('token');
     
-    useEffect(() => {
-        dispatch(fetchProducts());
+    const fetchOrders = useCallback(() => {
         dispatch(getOrders());
-    }, [changed, cartChanged]);
+    }, [dispatch])
+
+    const fetchProds = useCallback(() => {
+        dispatch(fetchProducts());
+    }, [dispatch]);
+
+
+    useEffect(() => {
+        fetchProds();
+    }, [products, fetchProds]);
+
+    useEffect(() => {
+        fetchOrders();
+    }, [fetchOrders])
 
     if(!token) {
         return <Redirect to="/signin"/>

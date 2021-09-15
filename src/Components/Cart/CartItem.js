@@ -1,4 +1,3 @@
-import { DeleteIcon } from '../../icons';
 import { useDispatch } from 'react-redux';
 import { removeOrder } from '../../Redux/Reducers/cartReducer';
 import { useSelector } from 'react-redux';

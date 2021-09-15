@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import CartItem from '../Components/Cart/CartItem';
 import Toast from '../Components/General/Toast';
 import { getOrders } from '../Redux/Reducers/cartReducer';
-import SwipeToDelete from 'react-swipe-to-delete-component';
 import BottomBar from '../Components/General/BottomBar';
 import { Redirect } from 'react-router';
 
@@ -15,7 +14,7 @@ function CartPage() {
 
     useEffect(()=>{
         dispatch(getOrders());
-    }, [ cartChanged ]) 
+    }, [ cartChanged, dispatch ]) 
 
     if(!token) {
         return <Redirect to="/signin"/>
