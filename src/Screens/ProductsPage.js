@@ -20,16 +20,16 @@ function ProductsPage() {
     
     const api = 'https://akys-grocery.herokuapp.com/';
     // const api = 'http://localhost:5000/';
-    // const token = localStorage.getItem('token');
+    const token = localStorage.getItem('token');
 
 
     
     useEffect(()=>{
-        axios.get(api+'products').then(res => {
+        axios.get(api+'products', {headers: {Authorization: token}}).then(res => {
             setProducts(res.data.products);
             setUser(res.data.user);
         });
-    }, [])
+    }, [token])
 
     return (
         <div className="w-full h-screen relative sm:hidden">
