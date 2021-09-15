@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import ProductItem from '../Components/Product/ProductItem';
 import ProductConfirmDialog from '../Components/Product/ProductConfirmDialog';
@@ -22,15 +22,14 @@ function ProductsPage() {
     // const api = 'http://localhost:5000/';
     // const token = localStorage.getItem('token');
 
-    const fetchProducts = useCallback(async () => {
-        const response = await axios.get(api+'products');
-        setProducts(response.data.products);
-        setUser(response.data.user);
-    },[])
+
     
     useEffect(()=>{
-        fetchProducts();
-    })
+        axios.get(api+'products').then(res => {
+            setProducts(res.data.products);
+            setUser(res.data.user);
+        });
+    }, [])
 
     return (
         <div className="w-full h-screen relative sm:hidden">
