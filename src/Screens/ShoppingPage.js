@@ -86,7 +86,7 @@ function ShoppingPage() {
                  {itemsToBuy && itemsToBuy.map(item => <ShoppingItem key={item.id} info={{id: item.id, itemName: item.itemName, itemCategory: item.itemCategory}}/>)}
 
             </section> 
-            <BottomBar/>
+            <BottomBar isActive={'list'}/>
 
         </div>
     )

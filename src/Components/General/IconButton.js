@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom"
 
 
-function IconButton({path, icon}) {
+function IconButton({path, icon, active}) {
 
     return (
-        <li className= "relative" >
+        <li className={active ? 'text-green-800' : 'text-green-500'}>
             <Link to={path}>{icon}</Link>
         </li>
     )

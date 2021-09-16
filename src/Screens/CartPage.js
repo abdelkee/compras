@@ -22,14 +22,15 @@ function CartPage() {
         return <Redirect to="/"/>
     }
 
+
     return (
         <div className="w-full h-screen relative sm:hidden">
             <SummaryCard/>
             <div className="pt-24 w-full pb-20 space-y-2" > 
-                {orders.map(order => <CartItem key={order._id} info={{id: order._id, name: order.productName, price: order.productPrice, quantity: order.productQuantity, user: order.user}}/>)}
+                {orders && orders.map((order, i) => <CartItem key={order._id} i={i} info={{id: order._id, name: order.productName, price: order.productPrice, quantity: order.productQuantity, user: order.user}}/>)}
             </div>
                 {loading && <Toast/>}
-            <BottomBar/>
+                <BottomBar isActive={'cart'}/>
 
         </div>
     )

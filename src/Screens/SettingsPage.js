@@ -24,7 +24,7 @@ function SettingsPage() {
                     {user && user === 'abdelkee' ? 'Abdel' : 'Belkys'}
                 </span>
             </section>    
-            <BottomBar/>
+            <BottomBar isActive={'settings'}/>
 
         </div>
     )

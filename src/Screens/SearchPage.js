@@ -20,7 +20,7 @@ function SearchPage() {
                 autoFocus
                 className="w-full h-14 rounded-md border border-gray-300 px-4 text-green-900 font-medium focus:outline-none focus:ring-2 focus:ring-green-700"
                 placeholder="Search..."/>
-            <BottomBar/>
+            <BottomBar isActive={'search'}/>
 
         </div>
     )
