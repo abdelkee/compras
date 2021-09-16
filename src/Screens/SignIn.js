@@ -2,26 +2,26 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import Toast from '../Components/General/Toast';
 import axios from "axios";
-import { useHistory } from "react-router-dom";
-
+import { useHistory, Redirect } from "react-router-dom";
+import { api } from '../Redux/api';
 
 function SignIn() {
 
     let history = useHistory();
     const [userData, setUserData] = useState({email:'', password:''});
     const {loading} = useSelector(state => state.general);
-    const token = localStorage.getItem('token');
 
-    if(token) {
-        return history.push('/');
+    const token = localStorage.getItem('token');
+    if(token){
+        return <Redirect to="/"/>
     }
-    
+
     async function signIn() {
         //akys-grocery.herokuapp.com
         if(!userData.email || !userData.password) return alert('Please fill in all the fields');
-        const response = await axios.post("https://akys-grocery.herokuapp.com/users/signin", userData);
+        const response = await axios.post(api+"users/signin", userData);
         localStorage.setItem('token', response.data.userToken);
-        history.push('/');
+        history.push('/home');
     }
 
     return (

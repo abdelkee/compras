@@ -6,6 +6,7 @@ import {v4} from 'uuid';
 import { addItem } from "../Redux/Reducers/shoppingReducer";
 import { useDispatch } from "react-redux";
 import BottomBar from "../Components/General/BottomBar";
+import { Redirect } from "react-router";
 // import { Redirect } from "react-router";
 
 
@@ -18,7 +19,10 @@ function ShoppingPage() {
     const [itemData, setItemData] = useState({id: '', itemName: '', itemCategory: ''});
     const dispatch = useDispatch();
 
-
+    const token = localStorage.getItem('token');
+    if(!token){
+        return <Redirect to="/"/>
+    }
 
     const submit = () => {
         if(!itemData.itemName || !itemData.itemCategory) return alert('Fill in all fields');

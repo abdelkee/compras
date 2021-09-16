@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const api = "https://akys-grocery.herokuapp.com/";
-// const api = "http://localhost:5000/";
+// export const api = "https://akys-grocery.herokuapp.com/";
+export const api = "http://localhost:5000/";
 const token = localStorage.getItem('token');
 
 

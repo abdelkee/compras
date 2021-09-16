@@ -20,8 +20,12 @@ function App() {
             
             <Switch>
               <Route exact path="/">
+                {token ? <Redirect to="/home"/> : <Redirect to="/signin"/>}
+              </Route>
+
+              <Route exact path="/home">
                 {/* <ProductsPage/> */}
-                {token ? <ProductsPage/> : <Redirect to="signin"/>}
+                <ProductsPage/> 
               </Route>
 
               <Route exact path="/cart">

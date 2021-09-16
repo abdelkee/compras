@@ -1,4 +1,5 @@
 // import { Redirect } from "react-router";
+import { Redirect } from "react-router";
 import BottomBar from "../Components/General/BottomBar";
 
 
@@ -6,7 +7,10 @@ import BottomBar from "../Components/General/BottomBar";
 
 function SearchPage() {
 
-
+    const token = localStorage.getItem('token');
+    if(!token){
+        return <Redirect to="/"/>
+    }
 
     return (
         <div className="w-full h-screen px-4 pt-8 relative sm:hidden">

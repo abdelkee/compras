@@ -4,6 +4,7 @@ import CartItem from '../Components/Cart/CartItem';
 import Toast from '../Components/General/Toast';
 import { getOrders } from '../Redux/Reducers/cartReducer';
 import BottomBar from '../Components/General/BottomBar';
+import { Redirect } from 'react-router';
 // import { Redirect } from 'react-router';
 
 function CartPage() {
@@ -16,6 +17,10 @@ function CartPage() {
         dispatch(getOrders());
     }, [ cartChanged, dispatch ]) 
 
+    const token = localStorage.getItem('token');
+    if(!token){
+        return <Redirect to="/"/>
+    }
 
     return (
         <div className="w-full h-screen relative sm:hidden">

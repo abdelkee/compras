@@ -8,23 +8,15 @@ import NewProductButton from '../Components/General/NewProductButton';
 import BottomBar from '../Components/General/BottomBar';
 import { fetchProducts } from '../Redux/Reducers/productsReducer';
 import Toast from '../Components/General/Toast';
-// import axios from 'axios';
+import { Redirect } from 'react-router';
 
 
 
 function ProductsPage() {
 
-    // const [products, setProducts] = useState([]);
-    // const [user, setUser] = useState('');
-
     const {products, user, loading, isFormOpen, confirmDialog, changed} = useSelector(state => state.prods);
     const {isBlur} = useSelector(state => state.general);
     const dispatch = useDispatch();
-
-
-    // const api = 'https://akys-grocery.herokuapp.com/';
-    // const api = 'http://localhost:5000/';
-    // const token = localStorage.getItem('token');
 
     
     
@@ -34,7 +26,12 @@ function ProductsPage() {
         //     setProducts(res.data.products);
         //     setUser(res.data.user);
         // });
-    }, [changed, dispatch])
+    }, [changed, dispatch]);
+
+    const token = localStorage.getItem('token');
+    if(!token){
+        return <Redirect to="/"/>
+    }
 
     return (
         <div className="w-full h-screen relative sm:hidden">
