@@ -22,7 +22,6 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-spring": "^9.2.4",
-    "react-swipe-to-delete-component": "^0.5.5",
     "uuidv4": "^6.2.12",
     "web-vitals": "^1.1.2"
   },

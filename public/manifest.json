@@ -1,0 +1,20 @@
+{
+    "name": "akys-compras-app",
+    "short_name": "Compras",
+    "background_color": "#f5fcff",
+    "theme_color": "#d126cb",
+    "description": "applicacion para anotar compras de la tienda",
+    "icons": [{
+      "src": "icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }, {
+      "src": "icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }],
+    "start_url": ".",
+    "display": "standalone"
+  }
