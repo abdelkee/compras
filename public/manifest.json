@@ -1,8 +1,8 @@
 {
-    "name": "akys-compras-app",
+    "name": "Abdelkys app",
     "short_name": "Compras",
     "background_color": "#f5fcff",
-    "theme_color": "#d126cb",
+    "theme_color": "#10B981",
     "description": "applicacion para anotar compras de la tienda",
     "icons": [{
       "src": "icons/icon-192x192.png",
