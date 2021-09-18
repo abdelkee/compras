@@ -20,13 +20,13 @@ function CartItem({i, info}) {
 
     const variants = {
         visible: (i) => ({
-            opacity: 1,
+            scale: 1,
             transition: {
-                delay: i * 0.1
+                delay: i * 0.006
             }
         }),
         hidden: {
-            opacity: 0
+            scale: 0.6
         }
     }
 

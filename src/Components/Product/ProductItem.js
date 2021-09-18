@@ -2,7 +2,7 @@ import { AddIcon, CancelIcon, DeleteIcon, EditIcon, MinusIcon, MoreIcon } from "
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { confirmDialogVisibility, setButtonVisibility, setFormVisibility, setIsNewToFalse, setIsOrderToFalse, setIsOrderToTrue, setProductInfo } from "../../Redux/Reducers/productsReducer";
-import { makeBgBlur } from "../../Redux/Reducers/generalReducer";
+import { makeBgBlur, setSearch } from "../../Redux/Reducers/generalReducer";
 import { motion } from 'framer-motion';
 
 function ProductItem({i, info}) {
@@ -12,13 +12,13 @@ function ProductItem({i, info}) {
 
     const variants = {
         visible: i => ({
-            opacity: 1,
+            scale: 1,
             transition: {
-                delay: i * 0.2
+                delay: i * 0.05
             }
         }),
         hidden: {
-            opacity: 0
+            scale: 0.6
         }
     }
 
@@ -74,10 +74,26 @@ function MakeOrderButton({switchTurn}) {
     )
 }
 
-function AddQuantity({info}) {
+export function AddQuantity({info}) {
 
     const [quantity, setQuantity] = useState(1);
     const dispatch = useDispatch();
+
+    const handleDispatch = () => {
+        const productInfo = {
+            productId: info.id,
+            name: info.name,
+            price: info.price * quantity,
+            quantity: quantity,
+        }
+
+        dispatch(confirmDialogVisibility(productInfo));
+        dispatch(setIsOrderToTrue());
+        dispatch(setButtonVisibility());
+        dispatch(makeBgBlur());
+        dispatch(setSearch(false));
+        document.body.style.overflow='hidden';
+    }
 
     return (
         <div className="relative flex justify-center items-center w-full py-2 rounded-br-lg bg-pink-500 text-white font-semibold focus:bg-pink-700">                
@@ -94,20 +110,7 @@ function AddQuantity({info}) {
             </motion.button>
             
             <button
-                onClick={()=>{
-                    const productInfo = {
-                        productId: info.id,
-                        name: info.name,
-                        price: info.price * quantity,
-                        quantity: quantity,
-                    }
-
-                    dispatch(confirmDialogVisibility(productInfo));
-                    dispatch(setIsOrderToTrue());
-                    dispatch(setButtonVisibility());
-                    dispatch(makeBgBlur());
-                    document.body.style.overflow='hidden';
-                }}> {quantity} 
+                onClick={handleDispatch}> {quantity} 
             </button>
 
             <motion.button 

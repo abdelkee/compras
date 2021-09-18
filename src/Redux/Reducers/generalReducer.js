@@ -10,7 +10,8 @@ const generalSlice = createSlice({
         isToastVisible: false,
         changePosition: true,
         loading: false,
-        isValid: false
+        isValid: false,
+        searchIsVisible: false
     },
     reducers: {
         makeBgBlur: (state) => {
@@ -31,6 +32,10 @@ const generalSlice = createSlice({
 
         setIsValid: (state) => {
             state.isValid = true;
+        },
+
+        setSearch: (state, action) => {
+            state.searchIsVisible = action.payload;
         }
 
     },
@@ -44,7 +49,8 @@ export const {
     removeBgBlur, 
     setToastVisibility, 
     setChangePosition,
-    setIsValid
+    setIsValid,
+    setSearch
 
 } = generalSlice.actions;
 export default generalSlice.reducer;

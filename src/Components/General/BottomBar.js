@@ -1,4 +1,4 @@
-import { HomeIcon, CartIcon, ListIcon, SettingsIcon, SearchIcon } from "../../icons";
+import { HomeIcon, CartIcon, ListIcon, SettingsIcon } from "../../icons";
 import IconButton from "./IconButton";
 import { motion } from 'framer-motion';
 
@@ -15,7 +15,6 @@ function BottomBar({isActive}) {
             >
                 <IconButton path={"/home"} icon={<HomeIcon />} active={isActive === 'home' ? true : false }/>
                 <IconButton path={"/cart"} icon={<CartIcon />} active={isActive === 'cart' ? true : false }/>
-                <IconButton path={"/search"} icon={<SearchIcon />} active={isActive === 'search' ? true : false }/>
                 <IconButton path={"/shopping"} icon={<ListIcon />} active={isActive === 'list' ? true : false }/>
                 <IconButton path={"/settings"} icon={<SettingsIcon />} active={isActive === 'settings' ? true : false }/>
         </motion.ul>

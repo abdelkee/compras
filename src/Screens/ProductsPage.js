@@ -9,23 +9,22 @@ import BottomBar from '../Components/General/BottomBar';
 import { fetchProducts } from '../Redux/Reducers/productsReducer';
 import Toast from '../Components/General/Toast';
 import { Redirect } from 'react-router';
+import SearchPage from './SearchPage';
+import { SearchIcon } from '../icons';
+import { setSearch } from '../Redux/Reducers/generalReducer';
 
 
 
 function ProductsPage() {
 
     const {products, user, loading, isFormOpen, confirmDialog, changed} = useSelector(state => state.prods);
-    const {isBlur} = useSelector(state => state.general);
+    const {isBlur, searchIsVisible} = useSelector(state => state.general);
     const dispatch = useDispatch();
 
     
     
     useEffect(()=>{
         dispatch(fetchProducts());
-        // axios.get(api+'products', {headers: {Authorization: token}}).then(res => {
-        //     setProducts(res.data.products);
-        //     setUser(res.data.user);
-        // });
     }, [changed, dispatch]);
 
     const token = localStorage.getItem('token');
@@ -36,11 +35,16 @@ function ProductsPage() {
     return (
         <div className="w-full h-screen relative sm:hidden">
 
-            <div className="w-full px-8 shadow-lg font-bold bg-purple-500 flex justify-between items-center h-16 text-white text-lg fixed top-0 left-0 z-30">
+            <div className="w-full px-8 shadow-lg font-bold bg-green-500 flex justify-between items-center h-16 text-white text-lg fixed top-0 left-0 z-30">
                 {user ? <UserName name={user === 'abdelkee' ? "Abdel" : "Belkys"} color={user === 'abdelkee' ? "bg-indigo-200" : "bg-pink-200"}/> : "no user"}       
                 
-                <NewProductButton/>
+                <div className="flex justify-between items-center space-x-6">
+                    <button onClick={() => dispatch(setSearch(true))}><SearchIcon/></button>
+                    <NewProductButton/>
+                </div>
+                {searchIsVisible && <SearchPage/>}
             </div>
+
         
             <section className="px-5 pt-24 relative w-full h-screen">
                 

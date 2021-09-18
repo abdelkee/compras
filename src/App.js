@@ -4,7 +4,6 @@ import ShoppingPage from './Screens/ShoppingPage';
 import SettingsPage from './Screens/SettingsPage';
 import CartPage from './Screens/CartPage';
 import SignIn from './Screens/SignIn';
-import SearchPage from './Screens/SearchPage';
 
 
 
@@ -24,16 +23,11 @@ function App() {
               </Route>
 
               <Route exact path="/home">
-                {/* <ProductsPage/> */}
                 <ProductsPage/> 
               </Route>
 
               <Route exact path="/cart">
                 <CartPage/>
-              </Route>
-
-              <Route exact path="/search">
-                <SearchPage/>
               </Route>
 
               <Route exact path="/shopping">
