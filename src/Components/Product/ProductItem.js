@@ -1,8 +1,8 @@
 import { AddIcon, CancelIcon, DeleteIcon, EditIcon, MinusIcon, MoreIcon } from "../../icons";
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { confirmDialogVisibility, setButtonVisibility, setFormVisibility, setIsNewToFalse, setIsOrderToFalse, setIsOrderToTrue, setProductInfo } from "../../Redux/Reducers/productsReducer";
-import { makeBgBlur, setSearch } from "../../Redux/Reducers/generalReducer";
+import { confirmDialogVisibility, setForm, setIsNew, setIsOrder, setProductInfo } from "../../Redux/Reducers/productsReducer";
+import { setBlur, setSearch } from "../../Redux/Reducers/generalReducer";
 import { motion } from 'framer-motion';
 
 function ProductItem({i, info}) {
@@ -87,10 +87,9 @@ export function AddQuantity({info}) {
             quantity: quantity,
         }
 
-        dispatch(confirmDialogVisibility(productInfo));
-        dispatch(setIsOrderToTrue());
-        dispatch(setButtonVisibility());
-        dispatch(makeBgBlur());
+        dispatch(confirmDialogVisibility({productInfo, true: true}));
+        dispatch(setIsOrder(true));
+        dispatch(setBlur(true));
         dispatch(setSearch(false));
         document.body.style.overflow='hidden';
     }
@@ -124,7 +123,7 @@ export function AddQuantity({info}) {
     )
 }
 
-function EditButton({info}) {
+export function EditButton({info}) {
 
         const dispatch = useDispatch();
 
@@ -133,11 +132,10 @@ function EditButton({info}) {
                 initial={{opacity: 0, bottom: 0}} 
                 animate={{opacity: 1, bottom: 44}}
                 onClick={()=> {
-                    dispatch(setIsNewToFalse());
-                    dispatch(setFormVisibility());
+                    dispatch(setIsNew(false));
+                    dispatch(setForm(true));
                     dispatch(setProductInfo({id: info.id, name: info.name, price: info.price, image: info.image}));
-                    dispatch(setButtonVisibility());
-                    dispatch(makeBgBlur());
+                    dispatch(setBlur(true));
                     document.body.style.overflow='hidden';
                 }}
                 className="option-btn bg-blue-500 focus:bg-blue-700">
@@ -146,7 +144,7 @@ function EditButton({info}) {
         )
 }
 
-function DeleteButton({info}) {
+export function DeleteButton({info}) {
 
     const dispatch = useDispatch();
 
@@ -157,10 +155,9 @@ function DeleteButton({info}) {
             transition={{delay: 0.2}}
             onClick={()=>{
                 
-                dispatch(confirmDialogVisibility({productId: info.id, name: info.name}));
-                dispatch(setIsOrderToFalse());
-                dispatch(setButtonVisibility());
-                dispatch(makeBgBlur());
+                dispatch(confirmDialogVisibility({productInfo: {productId: info.id, name: info.name}, true: true}));
+                dispatch(setIsOrder(false));
+                dispatch(setBlur(true));
                 document.body.style.overflow='hidden';
             }}
             className="option-btn bg-red-500 focus:bg-red-700">

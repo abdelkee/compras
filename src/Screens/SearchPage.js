@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import SearchedItem from "../Components/Search/SearchedItem";
 import { motion } from 'framer-motion';
 import { CancelIcon } from "../icons";
-import { setSearch } from "../Redux/Reducers/generalReducer";
+import { setBlur, setSearch } from "../Redux/Reducers/generalReducer";
 
 
 
@@ -17,7 +17,7 @@ function SearchPage() {
         <motion.div 
             initial={{top: -64}}
             animate={{top: 0}}
-            className={`absolute left-1/2 transform -translate-x-1/2 w-full px-4 py-2 h-16 z-40`}>
+            className={`absolute left-1/2 transform -translate-x-1/2 w-full px-4 py-2 h-16 z-50`}>
                 <div className="flex justify-between items-center bg-white w-full h-full rounded-md border border-gray-300 px-4 text-green-900 font-medium">
                     <input 
                         onChange={(e) => setWord(e.target.value)}                    
@@ -26,7 +26,11 @@ function SearchPage() {
                         className="w-full h-full focus:outline-none "
                         placeholder="Search..."/>
                     <button
-                        onClick={() => dispatch(setSearch(false))}
+                        onClick={() => {
+                            dispatch(setSearch(false));
+                            dispatch(setBlur(false));
+
+                        }}
                         ><CancelIcon/></button>    
                 </div>
 
@@ -38,7 +42,7 @@ function SearchPage() {
                                 return prod.name.toLowerCase().substring(0, lowerWord.length) === lowerWord.substring(0);
                             }
                             return ''
-                        }).map(filteredProd => <SearchedItem info={{id: filteredProd._id, name: filteredProd.name, price: filteredProd.price}}/>)
+                        }).map(filteredProd => <SearchedItem key={filteredProd._id} info={{id: filteredProd._id, name: filteredProd.name, price: filteredProd.price}}/>)
                     }
                 </ul>
 

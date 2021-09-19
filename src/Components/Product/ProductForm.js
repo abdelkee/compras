@@ -1,8 +1,8 @@
 import { CancelIcon } from '../../icons';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeBgBlur } from '../../Redux/Reducers/generalReducer';
-import { setFormVisibility, setButtonVisibility, postProduct, editProduct } from '../../Redux/Reducers/productsReducer';
+import { setBlur } from '../../Redux/Reducers/generalReducer';
+import { setForm, postProduct, editProduct } from '../../Redux/Reducers/productsReducer';
 import Resizer from 'react-image-file-resizer';
 import { motion } from 'framer-motion';
 
@@ -26,7 +26,7 @@ function ProductForm() {
             try {
                 Resizer.imageFileResizer(e.target.files[0],100,100,'JPEG',100,0,(uri) => {
                     setFile(uri);
-                    },'base64',100,100
+                    },'base64',300,300
                 );
             } catch (error) {
                 alert(error);
@@ -52,9 +52,8 @@ function ProductForm() {
         if(!productPrice) return alert('enter product price');
         if(isNew) dispatch(postProduct(data));
         if(!isNew) dispatch(editProduct(data));    
-        dispatch(removeBgBlur())
-        dispatch(setFormVisibility());
-        dispatch(setButtonVisibility());
+        dispatch(setBlur(false))
+        dispatch(setForm(false));
         document.body.style.overflow='auto';
     }
 
@@ -68,9 +67,8 @@ function ProductForm() {
                 >
                     <button 
                         onClick={() => {
-                            dispatch(setFormVisibility());
-                            dispatch(removeBgBlur());
-                            dispatch(setButtonVisibility());
+                            dispatch(setForm(false));
+                            dispatch(setBlur(false));
                             document.body.style.overflow='auto';
                         }}
                         className="flex justify-center items-center rounded-full bg-pink-500 text-white w-12 h-12 absolute -top-6 left-1/2 transform -translate-x-1/2"

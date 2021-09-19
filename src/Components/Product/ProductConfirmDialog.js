@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { CancelIcon } from '../../icons';
 import { postOrder } from '../../Redux/Reducers/cartReducer';
-import { removeBgBlur } from '../../Redux/Reducers/generalReducer';
-import { confirmDialogVisibility, deleteProduct, setButtonVisibility } from '../../Redux/Reducers/productsReducer';
+import { setBlur } from '../../Redux/Reducers/generalReducer';
+import { confirmDialogVisibility, deleteProduct } from '../../Redux/Reducers/productsReducer';
 
 
 function ProductConfirmDialog() {
@@ -25,9 +25,8 @@ function ProductConfirmDialog() {
 
       if(isOrder) dispatch(postOrder(body));
       if(!isOrder) dispatch(deleteProduct(productInfo.productId));
-      dispatch(confirmDialogVisibility());
-      dispatch(removeBgBlur());
-      dispatch(setButtonVisibility());
+      dispatch(confirmDialogVisibility(false));
+      dispatch(setBlur(false));
       document.body.style.overflow='auto';
     }
 
@@ -36,9 +35,8 @@ function ProductConfirmDialog() {
         <button 
           className="flex justify-center items-center rounded-full bg-pink-500 text-white w-12 h-12 absolute -top-6 left-1/2 transform -translate-x-1/2"
           onClick={() => {
-              dispatch(confirmDialogVisibility());
-              dispatch(removeBgBlur());
-              dispatch(setButtonVisibility());
+              dispatch(confirmDialogVisibility(false));
+              dispatch(setBlur(false));
               document.body.style.overflow='auto';
           }}
             ><CancelIcon/></button>

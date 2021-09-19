@@ -7,49 +7,24 @@ const generalSlice = createSlice({
     name: 'general',
     initialState: {
         isBlur: false,
-        isToastVisible: false,
-        changePosition: true,
         loading: false,
-        isValid: false,
-        searchIsVisible: false
+        isSearch: false
     },
     reducers: {
-        makeBgBlur: (state) => {
-            state.isBlur = true;
-        },
-
-        removeBgBlur: (state) => {
-            state.isBlur = false;
-        },
-
-        setToastVisibility: (state) => {
-            state.isToastVisible = !state.isToastVisible;
-        },
-
-        setChangePosition: (state) => {
-            state.changePosition = !state.changePosition;
-        },
-
-        setIsValid: (state) => {
-            state.isValid = true;
+        setBlur: (state, action) => {
+            state.isBlur = action.payload;
         },
 
         setSearch: (state, action) => {
-            state.searchIsVisible = action.payload;
+            state.isSearch = action.payload;
         }
 
     },
-    extraReducers: {
-    }
 });
 
 
 export const { 
-    makeBgBlur, 
-    removeBgBlur, 
-    setToastVisibility, 
-    setChangePosition,
-    setIsValid,
+    setBlur, 
     setSearch
 
 } = generalSlice.actions;

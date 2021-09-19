@@ -11,14 +11,14 @@ import Toast from '../Components/General/Toast';
 import { Redirect } from 'react-router';
 import SearchPage from './SearchPage';
 import { SearchIcon } from '../icons';
-import { setSearch } from '../Redux/Reducers/generalReducer';
+import { setBlur, setSearch } from '../Redux/Reducers/generalReducer';
 
 
 
 function ProductsPage() {
 
-    const {products, user, loading, isFormOpen, confirmDialog, changed} = useSelector(state => state.prods);
-    const {isBlur, searchIsVisible} = useSelector(state => state.general);
+    const {products, user, loading, isForm, confirmDialog, changed} = useSelector(state => state.prods);
+    const {isBlur, isSearch} = useSelector(state => state.general);
     const dispatch = useDispatch();
 
     
@@ -39,11 +39,14 @@ function ProductsPage() {
                 {user ? <UserName name={user === 'abdelkee' ? "Abdel" : "Belkys"} color={user === 'abdelkee' ? "bg-indigo-200" : "bg-pink-200"}/> : "no user"}       
                 
                 <div className="flex justify-between items-center space-x-6">
-                    <button onClick={() => dispatch(setSearch(true))}><SearchIcon/></button>
+                    <button onClick={() => {
+                        dispatch(setSearch(true));
+                        dispatch(setBlur(true));
+                    }}><SearchIcon/></button>
                     <NewProductButton/>
                 </div>
-                {searchIsVisible && <SearchPage/>}
             </div>
+                {isSearch && <SearchPage/>}
 
         
             <section className="px-5 pt-24 relative w-full h-screen">
@@ -53,7 +56,7 @@ function ProductsPage() {
                 </div>
 
                 {loading && <Toast/>}
-                {isFormOpen && <ProductForm/>}
+                {isForm && <ProductForm/>}
                 {confirmDialog && <ProductConfirmDialog/>}
                 {isBlur && <BlurBg/>}
             </section>

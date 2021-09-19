@@ -40,10 +40,8 @@ const productsSlice = createSlice({
         products: [],
         changed: true,
         loading: false,
-        isValid: false,
         user: '',
-        isFormOpen: false,
-        isButtonVisible: true,
+        isForm: false,
 
         isNew: true,
         idToUpdate: 0,
@@ -58,16 +56,12 @@ const productsSlice = createSlice({
 
     },
     reducers: {
-        setFormVisibility: (state) => {
-            state.isFormOpen = !state.isFormOpen;
+        setForm: (state, action) => {
+            state.isForm = action.payload;
         },
 
-        setIsNewToFalse: (state) => {
-            state.isNew = false;
-        },
-
-        setIsNewToTrue: (state) => {
-            state.isNew = true;
+        setIsNew: (state, action) => {
+            state.isNew = action.payload;
         },
 
         setProductInfo: (state, action) => {
@@ -77,21 +71,13 @@ const productsSlice = createSlice({
             state.image = action.payload.image
         },
 
-        setButtonVisibility: (state) => {
-            state.isButtonVisible = !state.isButtonVisible;
-        },
-
         confirmDialogVisibility: (state, action) => {
-            state.confirmDialog = !state.confirmDialog;
-            state.productInfo = action.payload; // payload = { productId ,name ,price ,quantity}
+            state.confirmDialog = action.payload.true;
+            state.productInfo = action.payload.productInfo; // payload = { productId ,name ,price ,quantity}
         },
 
-        setIsOrderToFalse: (state) => {
-            state.isOrder = false;
-        },
-
-        setIsOrderToTrue: (state) => {
-            state.isOrder = true;
+        setIsOrder: (state, action) => {
+            state.isOrder = action.payload;
         },
 
     },
@@ -122,17 +108,13 @@ const productsSlice = createSlice({
 })
 
 
-
 export const { 
 
-    setFormVisibility, 
+    setForm, 
     setProductInfo, 
-    setButtonVisibility, 
     confirmDialogVisibility,
-    setIsNewToFalse,
-    setIsNewToTrue,
-    setIsOrderToFalse,
-    setIsOrderToTrue
+    setIsNew,
+    setIsOrder
 
 } = productsSlice.actions;
 
