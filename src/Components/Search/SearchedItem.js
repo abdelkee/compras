@@ -11,8 +11,9 @@ function SearchedItem({info}) {
     return (
 
             <li 
-                className="w-full h-14 flex justify-between text-indigo-900 font-semibold items-center px-4 border-b-2">
-                    <span>{info.name}</span>
+                className="w-full h-14 flex justify-start text-indigo-900 font-semibold items-center px-2 border-b-2">
+                    <img className="w-10 h-10 rounded-2xl object-cover" src={info.image} alt={info.name} />
+                    <span className="flex-1 mx-4">{info.name}</span>
                     <div className="w-32"><AddQuantity info={info}/></div>
             </li>
       

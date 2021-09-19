@@ -25,9 +25,11 @@ function ShoppingItem({info}) {
             case 'food':
                 return 'bg-green-400';
             case 'cleaning':
-                return 'bg-yellow-400'
+                return 'bg-yellow-400';
             case 'medicine':
-                return 'bg-blue-400'
+                return 'bg-blue-400';
+            case 'otro':
+                return 'bg-gray-400';
             default:
                 return
         }

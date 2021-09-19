@@ -69,7 +69,7 @@ function MakeOrderButton({switchTurn}) {
         <button 
             onClick={switchTurn}
             className="w-full py-2 rounded-br-lg bg-indigo-500 text-white font-semibold text-md focus:bg-indigo-700">
-                Order
+                Anotar
         </button>
     )
 }
@@ -97,14 +97,14 @@ export function AddQuantity({info}) {
     return (
         <div className="relative flex justify-center items-center w-full py-2 rounded-br-lg bg-pink-500 text-white font-semibold focus:bg-pink-700">                
             <motion.button 
+                className="absolute left-0 top-0 h-full w-10 flex justify-center items-center bg-indigo-500 focus:bg-indigo-700"
                 initial={{scale: 0.2}}
                 animate={{scale: 1}}
                 onClick={()=>{
                     if(quantity > 1) {
                         setQuantity(quantity-1)
                     }
-                }}
-                className="absolute left-0 top-0 h-full w-10 flex justify-center items-center bg-indigo-500 focus:bg-indigo-700">
+                }}>
                 <MinusIcon/>
             </motion.button>
             
@@ -113,10 +113,10 @@ export function AddQuantity({info}) {
             </button>
 
             <motion.button 
+                className="absolute right-0 top-0 h-full w-10 rounded-br-md flex justify-center items-center bg-indigo-500 focus:bg-indigo-700"
                 initial={{scale: 0.2}}
                 animate={{scale: 1}}
-                onClick={()=>setQuantity(quantity+1)}
-                className="absolute right-0 top-0 h-full w-10 flex justify-center items-center bg-indigo-500 focus:bg-indigo-700">
+                onClick={()=>setQuantity(quantity+1)}>
                     <AddIcon/>
             </motion.button>
         </div>

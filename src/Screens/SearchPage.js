@@ -24,7 +24,7 @@ function SearchPage() {
                         type="text" 
                         autoFocus
                         className="w-full h-full focus:outline-none "
-                        placeholder="Search..."/>
+                        placeholder="Buscar..."/>
                     <button
                         onClick={() => {
                             dispatch(setSearch(false));
@@ -42,7 +42,7 @@ function SearchPage() {
                                 return prod.name.toLowerCase().substring(0, lowerWord.length) === lowerWord.substring(0);
                             }
                             return ''
-                        }).map(filteredProd => <SearchedItem key={filteredProd._id} info={{id: filteredProd._id, name: filteredProd.name, price: filteredProd.price}}/>)
+                        }).map(filteredProd => <SearchedItem key={filteredProd._id} info={{id: filteredProd._id, name: filteredProd.name, price: filteredProd.price, image: filteredProd.image}}/>)
                     }
                 </ul>
 
