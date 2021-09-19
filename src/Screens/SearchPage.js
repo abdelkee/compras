@@ -29,7 +29,7 @@ function SearchPage() {
                         onClick={() => {
                             dispatch(setSearch(false));
                             dispatch(setBlur(false));
-
+                            document.body.style.overflow='auto';
                         }}
                         ><CancelIcon/></button>    
                 </div>

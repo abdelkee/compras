@@ -42,6 +42,7 @@ function ProductsPage() {
                     <button onClick={() => {
                         dispatch(setSearch(true));
                         dispatch(setBlur(true));
+                        document.body.style.overflow='hidden';
                     }}><SearchIcon/></button>
                     <NewProductButton/>
                 </div>
