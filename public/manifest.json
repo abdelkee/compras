@@ -5,7 +5,7 @@
     "theme_color": "#10B981",
     "description": "applicacion para anotar compras de la tienda",
     "icons": [{
-      "src": "icons/icon-splash.png",
+      "src": "icons/icon_splash.png",
       "sizes": "1200x1200",
       "type": "image/png",
       "purpose": "any maskable"
