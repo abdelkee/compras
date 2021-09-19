@@ -10,26 +10,10 @@ function ProductItem({i, info}) {
     const [visible, setVisible] = useState(false);
     const [isAdded, setIsAdded] = useState(false);
 
-    const variants = {
-        visible: i => ({
-            scale: 1,
-            transition: {
-                delay: i * 0.05
-            }
-        }),
-        hidden: {
-            scale: 0.6
-        }
-    }
 
     return (
-        <motion.li 
-            className="relative w-44 h-64 m-auto bg-white shadow-md rounded-lg flex flex-col justify-between items-center"
-            custom={i}
-            initial="hidden"
-            animate="visible"
-            variants={variants}
-            >
+        <li 
+            className="relative w-44 h-64 m-auto bg-white shadow-md rounded-lg flex flex-col justify-between items-center">
             
                 <div 
                     className="w-full h-36 rounded-lg">                    
@@ -59,7 +43,7 @@ function ProductItem({i, info}) {
                 {visible && <DeleteButton info={info}/>}
                 
             
-        </motion.li>
+        </li>
     )
 }
 
@@ -131,6 +115,7 @@ export function EditButton({info}) {
             <motion.button
                 initial={{opacity: 0, bottom: 0}} 
                 animate={{opacity: 1, bottom: 44}}
+                transition={{delay: 0.05}}
                 onClick={()=> {
                     dispatch(setIsNew(false));
                     dispatch(setForm(true));
@@ -152,7 +137,7 @@ export function DeleteButton({info}) {
         <motion.button 
             initial={{opacity: 0, bottom: 0}}
             animate={{opacity: 1, bottom: 88}}
-            transition={{delay: 0.2}}
+            transition={{delay: 0.1}}
             onClick={()=>{
                 
                 dispatch(confirmDialogVisibility({productInfo: {productId: info.id, name: info.name}, true: true}));

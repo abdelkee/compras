@@ -6,7 +6,6 @@ import { motion } from 'framer-motion';
 function CartItem({i, info}) {
 
     const {user} = useSelector(state => state.prods);
-    console.log(user);
     const dispatch = useDispatch();
 
     const deleteOrder = () => {

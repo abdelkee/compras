@@ -1,5 +1,5 @@
 
-const CACHE_NAME = 'version-3.4';
+const CACHE_NAME = 'version-3.6';
 const urlsToCache = ['index.html', 'offline.html'];
 
 
@@ -9,7 +9,6 @@ self.addEventListener('install', (event) => {
     event.waitUntil(
         caches.open(CACHE_NAME)
             .then(chache => {
-                console.log('chache opened');
                 return chache.addAll(urlsToCache);
             })
     )
@@ -19,7 +18,6 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
         caches.match(event.request)
             .then(() => {
-                console.log('fetched');
                 return fetch(event.request)
                     .catch(() => caches.match('offline.html'));
                     

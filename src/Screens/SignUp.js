@@ -11,7 +11,6 @@ function SignUp() {
 
     async function signUp() {
         const response = await axios.post('http://localhost:5000/users/signup', userData);
-        console.log(response);
     }
 
     return (
