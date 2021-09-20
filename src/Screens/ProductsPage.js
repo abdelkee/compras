@@ -47,7 +47,7 @@ function ProductsPage() {
                 {isSearch && 
                 <motion.div initial={{top: -64}} animate={{top: 0}} className={`absolute left-1/2 transform -translate-x-1/2 w-full px-4 py-2 h-16 z-50`}>
                     <div className="flex justify-between items-center bg-white w-full h-full rounded-md border border-gray-300 px-4 text-green-900 font-medium">
-                        <input onChange={(e) => setWord(e.target.value)} type="text" autoFocusclassName="w-full h-full focus:outline-none "placeholder="Buscar..."/>
+                        <input onChange={(e) => setWord(e.target.value)} type="text" autoFocus className="w-full h-full focus:outline-none "placeholder="Buscar..."/>
                         <button onClick={() => {dispatch(setSearch(false)); setWord('')}}><CancelIcon/></button>    
                     </div>
                 </motion.div>}
