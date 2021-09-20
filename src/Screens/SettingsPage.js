@@ -16,7 +16,7 @@ function SettingsPage() {
 
     return (
         <div className="w-full h-screen relative sm:hidden">
-            <section className="w-full h-16 fixed top-0 left-0 px-2 rounded-b-md shadow-xl bg-yellow-600 flex justify-start items-center z-30">
+            <section className="w-full h-16 fixed top-0 left-0 px-2 rounded-b-md shadow-xl bg-green-600 flex justify-start items-center z-30">
                 <div className="w-12 h-12 bg-gray-100 rounded-full">
                     {/* <img src={} alt="" /> */}
                 </div>

@@ -27,4 +27,7 @@ export const ordersApi = {
 
     deleteOrder: (id) => 
                 axios.delete(api+'orders/'+id).then(res => res.data),
+
+    deleteAllOrders: () => 
+                axios.delete(api+'orders/deleteall').then(res => res.data),
 };

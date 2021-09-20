@@ -38,7 +38,7 @@ function ShoppingPage() {
     return (
         <div className="w-full h-screen relative sm:hidden">
             <section 
-                className="w-full h-16 fixed top-0 left-0 pl-6 pr-4 rounded-b-md shadow-xl bg-pink-600 flex justify-between items-center z-30">
+                className="w-full h-16 fixed top-0 left-0 pl-6 pr-4 rounded-b-md shadow-xl bg-green-600 flex justify-between items-center z-30">
                     <button onClick={()=>setShow(!show)} className={`text-white transform transition-transform duration-300 ease-out ${show && 'rotate-45'}`}><AddIcon/></button>
                     {show && <motion.div 
                                 className="flex flex-col justify-between items-center w-full h-32 py-3 px-5 mt-36 ml-4 bg-white shadow-xl rounded-b-xl rounded-t-sm"
@@ -46,7 +46,7 @@ function ShoppingPage() {
                                 animate={{scaleY: 1}}
                                 >
                                     <input 
-                                        className="rounded-md bg-pink-50 px-4 py-1 w-full border border-pink-300 focus:outline-none focus:border-pink-400"
+                                        className="rounded-md bg-indigo-50 px-4 py-1 w-full border border-green-300 focus:outline-none focus:border-green-400"
                                         type="text" 
                                         autoFocus
                                         placeholder="Nombre..." 
@@ -91,7 +91,7 @@ function ShoppingPage() {
                                         </div>
                                         <button 
                                             onClick={submit}
-                                            className="rounded-full bg-pink-800 flex justify-center items-center text-white w-8 h-8">
+                                            className="rounded-full bg-indigo-800 flex justify-center items-center text-white w-8 h-8">
                                             <DoneIcon/>
                                         </button>
                                     </div>

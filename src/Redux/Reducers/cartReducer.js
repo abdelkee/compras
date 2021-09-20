@@ -26,6 +26,14 @@ export const removeOrder = createAsyncThunk(
     }
 )
 
+export const deleteAllOrders = createAsyncThunk(
+    'cart/deleteAllOrders',
+    async () => {
+        const response = ordersApi.deleteAllOrders();
+        return response;
+    }
+)
+
 
 const cartSlice = createSlice({
     name: 'cart',
@@ -38,7 +46,7 @@ const cartSlice = createSlice({
     },
     reducers: {},
     extraReducers: {
-        [getOrders.pending]: (state, action) => {
+        [getOrders.pending]: (state) => {
             state.loading = true
         },
 
@@ -56,6 +64,10 @@ const cartSlice = createSlice({
         },
 
         [removeOrder.fulfilled]: (state) => {
+            state.cartChanged = !state.cartChanged;
+        },
+
+        [deleteAllOrders.fulfilled]: (state) => {
             state.cartChanged = !state.cartChanged;
         }
     }
