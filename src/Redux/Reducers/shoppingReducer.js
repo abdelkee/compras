@@ -16,7 +16,9 @@ const shoppingSlice = createSlice({
         },
 
         removeItem: (state, action) => {
-            //state.itemsToBuy = ;
+            const filtered = state.itemsToBuy.filter(each => each.id !== action.payload);
+            state.itemsToBuy = filtered;
+            localStorage.setItem('listItems', JSON.stringify(state.itemsToBuy));
         }
     }
 })

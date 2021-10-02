@@ -97,7 +97,7 @@ function ShoppingPage() {
                                     </div>
                     </motion.div>}
             </section> 
-            <section className="pt-24 px-2 w-full h-screen space-y-4 space-x-1" >
+            <section className="pt-24 px-2 w-full h-screen space-y-4 space-x-2" >
                  {itemsToBuy && itemsToBuy.map(item => <ShoppingItem key={item.id} info={{id: item.id, itemName: item.itemName, itemCategory: item.itemCategory}}/>)}
 
             </section> 

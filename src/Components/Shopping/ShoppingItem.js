@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { AddIcon, DoneIcon } from '../../icons';
+import { removeItem } from '../../Redux/Reducers/shoppingReducer';
 
 
 
@@ -11,6 +12,7 @@ function ShoppingItem({info}) {
     localStorage.setItem(info.id, checked);
     
     const {user} = useSelector(state => state.prods);
+    const dispatch = useDispatch();
 
     const handleCheck = () => {
         if(checked) {
@@ -23,13 +25,13 @@ function ShoppingItem({info}) {
     const categoryColor = () => {
         switch(info.itemCategory) {
             case 'food':
-                return 'bg-green-400';
+                return 'border-b-2 border-green-400';
             case 'cleaning':
-                return 'bg-yellow-400';
+                return 'border-b-2 border-yellow-400';
             case 'medicine':
-                return 'bg-blue-400';
+                return 'border-b-2 border-blue-400';
             case 'otro':
-                return 'bg-gray-400';
+                return 'border-b-2 border-gray-400';
             default:
                 return
         }
@@ -37,13 +39,17 @@ function ShoppingItem({info}) {
 
     return (
         <div
-            onClick={()=> {
-                setChecked(!checked);
-            }} 
-            className="relative inline-flex items-center pr-2 rounded-full bg-white border border-gray-200 p-px shadow-md">
-                <span className={`absolute -top-1 right-0 w-3 h-3 rounded-full ${categoryColor()}`}></span>     
-                <span className={`w-8 h-8 mr-2 text-white rounded-full flex justify-center items-center transition-all duration-300 ease-in-out ${handleCheck()}`}>{checked ? <DoneIcon/> : <AddIcon/>}</span>     
+            
+            className={`relative inline-flex items-center py-1 px-1 rounded-full bg-white ${categoryColor()} p-px shadow-md`}>
+                <span
+                    onClick={()=> {
+                        setChecked(!checked);
+                    }} 
+                    className={`w-7 h-7 mr-2 text-white rounded-full flex justify-center items-center transition-all duration-300 ease-in-out ${handleCheck()}`}>{checked ? <DoneIcon/> : <AddIcon/>}</span>     
                 <span className="px-1 text-base font-semibold text-pink-900">{info.itemName}</span>
+                <button
+                    onClick={() => dispatch(removeItem(info.id))} 
+                    className="w-4 h-4 grid place-content-center"><span className="text-red-600 text-lg transform rotate-45">+</span></button>                
         </div>
     )
 }
