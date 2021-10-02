@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CartItem from '../Components/Cart/CartItem';
 import Toast from '../Components/General/Toast';
-import { deleteAllOrders, getOrders } from '../Redux/Reducers/cartReducer';
+import { getOrders, removeAllOrders } from '../Redux/Reducers/cartReducer';
 import BottomBar from '../Components/General/BottomBar';
 import { Redirect } from 'react-router';
 
@@ -22,8 +22,8 @@ function CartPage() {
     }
 
     const handlePayment = () => {
-        if(window.confirm('Vas a pagar y borrar todo?')) {
-            dispatch(deleteAllOrders());
+        if(window.confirm('Se va a borrar todo')) {
+            dispatch(removeAllOrders())
         }
     }
 

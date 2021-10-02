@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-export const api = "https://akys-grocery.herokuapp.com/";
-// export const api = "http://localhost:5000/";
+// export const api = "https://akys-grocery.herokuapp.com/";
+export const api = "http://localhost:5000/";
 const token = localStorage.getItem('token');
 
 
@@ -29,5 +29,6 @@ export const ordersApi = {
                 axios.delete(api+'orders/'+id).then(res => res.data),
 
     deleteAllOrders: () => 
-                axios.delete(api+'orders/deleteall').then(res => res.data),
+                axios.delete(api+'orders/all').then(res => res.data),            
+
 };

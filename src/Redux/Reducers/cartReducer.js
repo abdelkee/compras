@@ -24,15 +24,15 @@ export const removeOrder = createAsyncThunk(
         const response = ordersApi.deleteOrder(id);
         return response;
     }
-)
+);
 
-export const deleteAllOrders = createAsyncThunk(
-    'cart/deleteAllOrders',
+export const removeAllOrders = createAsyncThunk(
+    'cart/removeAllOrders',
     async () => {
         const response = ordersApi.deleteAllOrders();
         return response;
     }
-)
+);
 
 
 const cartSlice = createSlice({
@@ -67,7 +67,7 @@ const cartSlice = createSlice({
             state.cartChanged = !state.cartChanged;
         },
 
-        [deleteAllOrders.fulfilled]: (state) => {
+        [removeAllOrders.fulfilled]: (state) => {
             state.cartChanged = !state.cartChanged;
         }
     }
