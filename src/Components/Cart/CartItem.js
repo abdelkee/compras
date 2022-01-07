@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { removeOrder } from "../../Redux/Reducers/cartReducer";
 import { useSelector } from "react-redux";
-import { motion } from "framer-motion";
+// import { motion } from "framer-motion";
 
 function CartItem({ i, info }) {
   const { user } = useSelector((state) => state.prods);
@@ -16,26 +16,26 @@ function CartItem({ i, info }) {
     }
   };
 
-  const variants = {
-    visible: (i) => ({
-      scale: 1,
-      transition: {
-        delay: i * 0.006,
-      },
-    }),
-    hidden: {
-      scale: 0.6,
-    },
-  };
+  // const variants = {
+  //   visible: (i) => ({
+  //     scale: 1,
+  //     transition: {
+  //       delay: i * 0.006,
+  //     },
+  //   }),
+  //   hidden: {
+  //     scale: 0.6,
+  //   },
+  // };
 
   return (
-    <motion.li
+    <li
       onClick={deleteOrder}
       className="relative w-11/12 h-14 m-auto rounded-md shadow-md bg-white text-green-900 font-semibold text-lg flex justify-between items-center"
-      custom={i}
-      initial="hidden"
-      animate="visible"
-      variants={variants}
+      // custom={i}
+      // initial="hidden"
+      // animate="visible"
+      // variants={variants}
     >
       <span
         className={`mx-6 flex justify-center items-center ${
@@ -52,7 +52,7 @@ function CartItem({ i, info }) {
         </div>
         <span>$ {info.price}</span>
       </div>
-    </motion.li>
+    </li>
   );
 }
 
